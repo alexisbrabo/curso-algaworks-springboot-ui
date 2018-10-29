@@ -27,9 +27,9 @@
           <tr>
             <th>Nome</th>
             <th>Cidade</th>
-            <th class="col-data">Estado</th>
-            <th class="col-data">Status</th>
-            <th class="col-acoes">Ações</th>
+            <th class="col-data-header">Estado</th>
+            <th class="col-data-header">Status</th>
+            <th class="col-acoes-header">Ações</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-pessoa>
@@ -37,11 +37,13 @@
             <td><span class="ui-column-title">Nome</span>{{pessoa.nome}}</td>
             <td><span class="ui-column-title">Cidade</span>{{pessoa.cidade}}</td>
             <td><span class="ui-column-title">Estado</span>{{pessoa.estado}}</td>
-            <td><span class="ui-column-title">Ações</span><a href="javascript:;" tooltipPosition="top" pTooltip="{{!pessoa.ativo ? 'Ativar' : 'Inativar'}}">{{pessoa.ativo === true ? 'Ativo' : 'Inativo'}}</a></td>
-            <td>
+            <td><span class="ui-column-title">Ações</span><a href="javascript:;" tooltipPosition="top" pTooltip="{{!pessoa.ativo ? 'Ativar' : 'Inativar'}}">
+                {{pessoa.ativo === true ? 'Ativo' : 'Inativo'}}
+              </a></td>
+            <td class="col-acoes">
               <div class="ui-g">
                 <div class="ui-g-6"><a pButton pTooltip="Editar Registro" tooltipPosition="top" icon="pi pi-pencil"></a></div>
-                <div class="ui-g-6"><button pButton pTooltip="Deletar Registro" tooltipPosition="top"  icon="pi pi-trash"></button></div>
+                <div class="ui-g-6"><button pButton pTooltip="Deletar Registro" tooltipPosition="top" icon="pi pi-trash"></button></div>
               </div>
             </td>
           </tr>

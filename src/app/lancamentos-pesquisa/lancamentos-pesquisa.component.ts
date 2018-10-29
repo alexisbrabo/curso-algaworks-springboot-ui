@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
-  styleUrls: ['./lancamentos-pesquisa.component.css']
+  styleUrls: ['./lancamentos-pesquisa.component.css'],
+  preserveWhitespaces: true
 })
 export class LancamentosPesquisaComponent {
   lancamentos = [
