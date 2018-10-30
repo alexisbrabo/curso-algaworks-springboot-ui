@@ -12,7 +12,8 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [locale]="pt"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" [locale]="pt" name="vencimento" required ngModel #vencimento="ngModel"></p-calendar>
+        <app-message [control]="vencimento" classes="" error="required" text="Informe a Data"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -37,12 +38,12 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="categorias" required placeholder="Selecione" [autoWidth]="false"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="pessoas" required [filter]="true" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
