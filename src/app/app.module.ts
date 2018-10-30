@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -11,6 +12,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import {InputMaskModule} from 'primeng/inputmask';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -20,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +32,13 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     NavbarComponent,
     PessoasPesquisaComponent,
     LancamentoCadastroComponent,
-    PessoaCadastroComponent
+    PessoaCadastroComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -42,6 +48,8 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
+    MessagesModule,
+    MessageModule,
     CurrencyMaskModule
   ],
   providers: [],

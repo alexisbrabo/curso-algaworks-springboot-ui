@@ -22,12 +22,17 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text">
+        <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
+
+        <app-message [control]="descricao" classes="" error="required" text="Informe a Descrição"></app-message>
+        <app-message [control]="descricao" classes="" error="minlength" text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" pInputText type="text" placeholder="0,00">
+        <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" pInputText
+          name="valor" ngModel type="text" placeholder="0,00">
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
@@ -37,8 +42,7 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas"
-        [filter]="true" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
