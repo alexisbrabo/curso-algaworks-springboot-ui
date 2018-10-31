@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form #formulario="ngForm">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -33,17 +33,18 @@
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
         <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" pInputText
-          name="valor" ngModel type="text" placeholder="0,00">
+          name="valor" ngModel required type="text" placeholder="0,00" #valor="ngModel">
+        <app-message [control]="valor" classes="" error="required" text="Informe o Valor"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" required placeholder="Selecione" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="categorias" required name="categoria" ngModel placeholder="Selecione" [autoWidth]="false"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" required [filter]="true" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="pessoas" required name="pessoa" ngModel [filter]="true" placeholder="Selecione" [autoWidth]="false"></p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
@@ -52,7 +53,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
