@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { SelectItem } from 'primeng/components/common/selectitem';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-lancamento-cadastro',
