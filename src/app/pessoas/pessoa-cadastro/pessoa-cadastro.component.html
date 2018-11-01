@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form #formulario="ngForm">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -55,7 +55,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" [disabled]="formulario.invalid" label="Salvar"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
