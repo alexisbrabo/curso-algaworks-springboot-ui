@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+export interface LancamentoFiltro {
+  descricao: string;
+  dataVencimentoDe: Date;
+  dataVencimentoAte: Date;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +17,13 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(): Observable<any> {
+  pesquisar(filtro: any): Observable<any> {
+    const params = new HttpParams({ fromObject: filtro });
     const headers = new HttpHeaders({
-      'Content-Type':  'application/json',
+      'Content-Type': 'application/json',
       'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
     });
-    return this.http.get(`${this.lancamentosUrl}?resumo`, { headers });
+
+    return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params });
   }
 }
