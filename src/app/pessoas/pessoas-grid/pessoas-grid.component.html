@@ -1,4 +1,5 @@
-<p-table [value]="pessoas" [responsive]="true" [paginator]="true" [rows]="5">
+<p-table [value]="pessoas" [responsive]="true" [paginator]="true" [lazy]="true"
+[totalRecords]="totalRegistros" [rows]="filtro.size" (onLazyLoad)="aoMudarPagina($event)">
 
   <ng-template pTemplate="header">
     <tr>
@@ -12,8 +13,8 @@
   <ng-template pTemplate="body" let-pessoa>
     <tr>
       <td><span class="ui-column-title">Nome</span>{{pessoa.nome}}</td>
-      <td><span class="ui-column-title">Cidade</span>{{pessoa.cidade}}</td>
-      <td><span class="ui-column-title">Estado</span>{{pessoa.estado}}</td>
+      <td><span class="ui-column-title">Cidade</span>{{pessoa.endereco.cidade}}</td>
+      <td><span class="ui-column-title">Estado</span>{{pessoa.endereco.estado}}</td>
       <td><span class="ui-column-title">Ações</span><a href="javascript:;" tooltipPosition="top" pTooltip="{{!pessoa.ativo ? 'Ativar' : 'Inativar'}}">
           {{pessoa.ativo === true ? 'Ativo' : 'Inativo'}}
         </a></td>

@@ -18,6 +18,5 @@ export class LancamentosGridComponent {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.lancamentoPesquisa.pesquisar(pagina);
-    console.log(event);
   }
 }
