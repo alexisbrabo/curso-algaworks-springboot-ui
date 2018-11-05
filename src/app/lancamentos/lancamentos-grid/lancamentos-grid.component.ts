@@ -11,12 +11,13 @@ export class LancamentosGridComponent {
 
   @Input() lancamentos = [];
   @Input() filtro;
-  @Input() totalRegistros = null;
+  @Input() totalRegistros;
 
   constructor(private lancamentoPesquisa: LancamentosPesquisaComponent) {}
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.lancamentoPesquisa.pesquisar(pagina);
+    console.log(event);
   }
 }
