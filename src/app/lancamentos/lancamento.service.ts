@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 
 export interface LancamentoFiltro {
   descricao: string;
-  dataVencimentoDe: Date;
-  dataVencimentoAte: Date;
+  dataVencimentoDe: string;
+  dataVencimentoAte: string;
 }
 
 @Injectable({
@@ -18,6 +18,7 @@ export class LancamentoService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: any): Observable<any> {
+    Object.keys(filtro).forEach(key => !filtro[key] ? delete filtro[key] : '');
     const params = new HttpParams({ fromObject: filtro });
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
