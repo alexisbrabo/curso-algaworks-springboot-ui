@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/components/common/api';
+import { LancamentosPesquisaComponent } from '../lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 @Component({
   selector: 'app-lancamentos-grid',
@@ -7,5 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LancamentosGridComponent {
 
-@Input() lancamentos = [];
+  @Input() lancamentos = [];
+  @Input() filtro;
+  @Input() totalRegistros = null;
+
+  constructor(private lancamentoPesquisa: LancamentosPesquisaComponent) {}
+
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.lancamentoPesquisa.pesquisar(pagina);
+  }
 }

@@ -10,16 +10,16 @@
 
       <div class="ui-g-12 ui-fluid">
         <label>Descrição</label>
-        <input pInputText type="text" name="descricao" [(ngModel)]="descricao">
+        <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
       </div>
 
       <div class="ui-g-12">
         <label style="display: block">Vencimento</label>
-        <p-calendar [locale]="pt" dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio">
+        <p-calendar [locale]="pt" dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoDe">
         </p-calendar>
 
         <label>até</label>
-        <p-calendar [locale]="pt" dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoFim" [(ngModel)]="dataVencimentoFim">
+        <p-calendar [locale]="pt" dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }" name="vencimentoFim" [(ngModel)]="filtro.dataVencimentoAte">
         </p-calendar>
       </div>
 
@@ -34,7 +34,7 @@
   <div class="ui-g">
 
     <div class="ui-g-12">
-      <app-lancamentos-grid [lancamentos]=lancamentos></app-lancamentos-grid>
+      <app-lancamentos-grid [lancamentos]=lancamentos [filtro]=filtro [totalRegistros]="totalRegistros"></app-lancamentos-grid>
     </div>
 
     <div class="ui-g-12">

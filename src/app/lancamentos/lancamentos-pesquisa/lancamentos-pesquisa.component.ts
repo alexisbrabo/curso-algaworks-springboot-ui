@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { AppComponent } from 'src/app/app.component';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -11,9 +10,8 @@ import * as moment from 'moment';
 })
 export class LancamentosPesquisaComponent implements OnInit {
   lancamentos = Array<any>();
-  descricao: string;
-  dataVencimentoInicio: Date;
-  dataVencimentoFim: Date;
+  filtro = new LancamentoFiltro();
+  totalRegistros = 0;
   pt: any;
 
 
@@ -23,17 +21,21 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   ngOnInit() {
     this.pt = this.app.pt;
-    this.pesquisar();
   }
 
-  pesquisar() {
-    const filtro: LancamentoFiltro = {
-      descricao: this.descricao,
-      dataVencimentoDe: this.dataVencimentoInicio ? moment(this.dataVencimentoInicio).format('YYYY-MM-DD') : null,
-      dataVencimentoAte: this.dataVencimentoFim ? moment(this.dataVencimentoFim).format('YYYY-MM-DD') : null
-    };
+  pesquisar(pagina) {
+    this.filtro.page = pagina;
 
-    this.lancamentoService.pesquisar(filtro).subscribe(response => this.lancamentos = response.content);
+    this.lancamentoService.pesquisar(this.filtro).subscribe(response => {
+      const lancamentos = response.content;
+
+      const resultado = {
+        lancamentos,
+        total: response.totalElements
+      };
+      this.totalRegistros = resultado.total;
+      this.lancamentos = resultado.lancamentos;
+    });
   }
 
 }

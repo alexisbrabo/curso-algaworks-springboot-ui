@@ -1,4 +1,5 @@
-<p-table [value]="lancamentos" [responsive]="true" [paginator]="true" [rows]="5">
+<p-table [value]="lancamentos" [responsive]="true" [paginator]="true" [lazy]="true"
+[totalRecords]="totalRegistros" [rows]="filtro.size" (onLazyLoad)="aoMudarPagina($event)">
 
   <ng-template pTemplate="header">
     <tr>
