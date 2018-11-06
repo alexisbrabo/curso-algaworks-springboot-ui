@@ -9,6 +9,9 @@ import { CoreModule } from './core/core.module';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MessageService, ConfirmationService } from 'primeng/components/common/api';
+import { PessoaService } from './pessoas/pessoa.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     PessoasModule,
     CoreModule
   ],
-  providers: [LancamentoService],
+  providers: [LancamentoService, PessoaService, MessageService, ConfirmationService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,4 +32,13 @@ export class LancamentoService {
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params });
   }
+
+  excluir(codigo: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers });
+  }
 }
