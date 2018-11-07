@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { LazyLoadEvent, MessageService } from 'primeng/components/common/api';
+import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/components/common/api';
 import { LancamentosPesquisaComponent } from '../lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoService } from '../lancamento.service';
 
@@ -16,7 +16,7 @@ export class LancamentosGridComponent {
   @ViewChild('tabela') grid;
 
   constructor(private lancamentoPesquisa: LancamentosPesquisaComponent, private lancamentoService: LancamentoService,
-     private messageService: MessageService) { }
+    private messageService: MessageService, private confirmation: ConfirmationService) { }
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
@@ -27,12 +27,20 @@ export class LancamentosGridComponent {
     this.lancamentoService.excluir(lancamento.codigo).subscribe(response => {
       this.lancamentoPesquisa.pesquisar(0);
       this.grid.first = 0;
-      this.messageService.add({severity: 'success', detail: 'Lançamento excluído com sucesso'});
+      this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso' });
     });
   }
 
-  showSuccess() {
-    this.messageService.add({severity: 'success', summary: 'Success Message', detail: 'Order submitted'});
-}
+  confirmarExclusao(lancamento: any) {
+    this.confirmation.confirm({
+      header: 'Confirmar Exclusão',
+      message: 'Tem certeza que deseja excluir?',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
+  }
 
 }

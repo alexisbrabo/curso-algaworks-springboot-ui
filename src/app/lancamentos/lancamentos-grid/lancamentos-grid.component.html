@@ -1,5 +1,3 @@
-<p-toast [style]="{marginTop: '80px'}"></p-toast>
-
 <p-table [value]="lancamentos" [responsive]="true" [paginator]="true" [lazy]="true"
 [totalRecords]="totalRegistros" [rows]="filtro.size" (onLazyLoad)="aoMudarPagina($event)" #tabela>
 
@@ -30,7 +28,7 @@
       <td class="col-acoes">
         <div class="ui-g">
           <div class="ui-g-6"><a pButton pTooltip="Editar Registro" tooltipPosition="top" icon="pi pi-pencil"></a></div>
-          <div class="ui-g-6"><button pButton pTooltip="Deletar Registro" (click)="excluir(lancamento)" tooltipPosition="top" icon="pi pi-trash"></button></div>
+          <div class="ui-g-6"><button pButton pTooltip="Deletar Registro" (click)="confirmarExclusao(lancamento)" tooltipPosition="top" icon="pi pi-trash"></button></div>
         </div>
       </td>
     </tr>
