@@ -14,6 +14,7 @@ export class PessoaFiltro {
   providedIn: 'root'
 })
 export class PessoaService {
+
   pessoasUrl = 'http://localhost:8080/pessoas';
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) { }
@@ -37,5 +38,14 @@ export class PessoaService {
     });
 
     return this.http.get(`${this.pessoasUrl}`, { headers }).pipe(catchError(this.errorHandler.handle));
+  }
+
+  excluir(codigo: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers }).pipe(catchError(this.errorHandler.handle));
   }
 }

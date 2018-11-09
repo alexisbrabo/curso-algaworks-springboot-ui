@@ -17,7 +17,11 @@ export class ErrorHandlerService {
     if (typeof error === 'string') {
       msg = error;
     } else {
-      msg = 'Falha no processamento. Tente Novamente';
+      if (error.status.toString().startsWith(4)) {
+        msg = error.error[0].mensagemUsuario;
+      } else {
+        msg = 'Falha no processamento. Tente Novamente';
+      }
     }
     console.log('erro', error);
     return throwError(msg);
