@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import * as moment from 'moment';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 export class LancamentoFiltro {
   descricao: string;
@@ -41,4 +42,5 @@ export class LancamentoService {
 
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers });
   }
+
 }
