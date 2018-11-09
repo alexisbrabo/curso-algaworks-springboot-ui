@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 export class PessoaFiltro {
   nome: string;
@@ -14,7 +16,7 @@ export class PessoaFiltro {
 export class PessoaService {
   pessoasUrl = 'http://localhost:8080/pessoas';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) { }
 
   pesquisar(filtro: any): Observable<any> {
     // Deletar filtros que não foram preenchidos
@@ -25,7 +27,7 @@ export class PessoaService {
       'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
     });
 
-    return this.http.get(`${this.pessoasUrl}`, { headers, params });
+    return this.http.get(`${this.pessoasUrl}`, { headers, params }).pipe(catchError(this.errorHandler.handle));
   }
 
   listarTodas(): Observable<any> {
@@ -34,6 +36,6 @@ export class PessoaService {
       'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
     });
 
-    return this.http.get(`${this.pessoasUrl}`, { headers });
+    return this.http.get(`${this.pessoasUrl}`, { headers }).pipe(catchError(this.errorHandler.handle));
   }
 }

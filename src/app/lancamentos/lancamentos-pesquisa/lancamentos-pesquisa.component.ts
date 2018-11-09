@@ -18,7 +18,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 
 
   constructor(private lancamentoService: LancamentoService, private app: AppComponent,
-    private messageService: MessageService, private errorHandler: ErrorHandlerService) {
+    private messageService: MessageService) {
 
   }
 
@@ -39,7 +39,7 @@ export class LancamentosPesquisaComponent implements OnInit {
       this.totalRegistros = resultado.total;
       this.lancamentos = resultado.lancamentos;
     }, error => {
-      this.errorHandler.handle(error);
+      this.messageService.add({ severity: 'error', detail: error });
     });
   }
 

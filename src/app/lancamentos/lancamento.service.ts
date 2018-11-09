@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import * as moment from 'moment';
 import { ErrorHandlerService } from '../core/error-handler.service';
 
@@ -19,7 +20,7 @@ export class LancamentoService {
 
   lancamentosUrl = 'http://localhost:8080/lancamentos';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) { }
 
   pesquisar(filtro: any): Observable<any> {
     // Deletar filtros que não foram preenchidos e Converter os filtros do tipo Date para string aceita pela API
@@ -31,7 +32,7 @@ export class LancamentoService {
       'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
     });
 
-    return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params });
+    return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params }).pipe(catchError(this.errorHandler.handle));
   }
 
   excluir(codigo: number): Observable<any> {
@@ -40,7 +41,7 @@ export class LancamentoService {
       'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
     });
 
-    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers });
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers }).pipe(catchError(this.errorHandler.handle));
   }
 
 }

@@ -7,7 +7,9 @@ import { MessageService } from 'primeng/components/common/api';
 })
 export class ErrorHandlerService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService) {
+
+  }
 
   handle(error: any) {
     let msg: string;
@@ -18,6 +20,6 @@ export class ErrorHandlerService {
       msg = 'Falha no processamento. Tente Novamente';
     }
     console.log('erro', error);
-    this.messageService.add({ severity: 'error', detail: msg });
+    return throwError(msg);
   }
 }

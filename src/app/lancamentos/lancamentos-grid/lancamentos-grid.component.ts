@@ -28,6 +28,9 @@ export class LancamentosGridComponent {
       this.lancamentoPesquisa.pesquisar(0);
       this.grid.first = 0;
       this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso' });
+    },
+    error => {
+      this.messageService.add({ severity: 'error', detail: error });
     });
   }
 

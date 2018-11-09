@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PessoaService, PessoaFiltro } from '../pessoa.service';
 
+import { MessageService } from 'primeng/components/common/api';
+
 @Component({
   selector: 'app-pessoas-pesquisa',
   templateUrl: './pessoas-pesquisa.component.html',
@@ -13,9 +15,9 @@ export class PessoasPesquisaComponent implements OnInit {
   filtro = new PessoaFiltro();
   totalRegistros = 0;
 
-  constructor(private pessoaService: PessoaService) { }
+  constructor(private pessoaService: PessoaService, private messageService: MessageService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   pesquisar(pagina) {
     this.filtro.page = pagina;
@@ -29,6 +31,9 @@ export class PessoasPesquisaComponent implements OnInit {
       };
       this.totalRegistros = resultado.total;
       this.pessoas = resultado.pessoas;
-    });
+    },
+      error => {
+        this.messageService.add({ severity: 'error', detail: error });
+      });
   }
 }
