@@ -24,6 +24,17 @@ export class PessoasGridComponent {
     this.pessoasPesquisa.pesquisar(pagina);
   }
 
+  atualizarStatusAtivo(pessoa: any) {
+    this.pessoaService.mudarStatus(pessoa.codigo, pessoa.ativo ? false : true).subscribe(response => {
+      this.pessoasPesquisa.pesquisar(0);
+      this.grid.first = 0;
+      this.messageService.add({ severity: 'success', detail: 'Status da pessoa atualizado com sucesso' });
+    },
+      error => {
+        this.messageService.add({ severity: 'error', detail: error });
+      });
+  }
+
   excluir(pessoa: any) {
     this.pessoaService.excluir(pessoa.codigo).subscribe(response => {
       this.pessoasPesquisa.pesquisar(0);

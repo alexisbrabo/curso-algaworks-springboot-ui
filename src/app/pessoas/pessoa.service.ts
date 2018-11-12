@@ -48,4 +48,14 @@ export class PessoaService {
 
     return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers }).pipe(catchError(this.errorHandler.handle));
   }
+
+  mudarStatus(codigo: number, status: boolean): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`,
+     status, { headers }).pipe(catchError(this.errorHandler.handle));
+  }
 }
