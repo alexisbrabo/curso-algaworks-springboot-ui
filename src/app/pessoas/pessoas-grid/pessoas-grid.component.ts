@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { PessoasPesquisaComponent } from '../pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaService } from '../pessoa.service';
 
