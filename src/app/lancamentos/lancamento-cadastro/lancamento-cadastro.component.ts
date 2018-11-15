@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { MessageService } from 'primeng/components/common/api';
+import { PessoaService } from 'src/app/pessoas/pessoa.service';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -17,26 +18,36 @@ export class LancamentoCadastroComponent implements OnInit {
     { label: 'Despesa', value: 'DESPESA' }
   ];
   categorias = [];
-  pessoas = [
-    { label: 'João da Silva', value: 1 },
-    { label: 'Sebastião Souza', value: 2 },
-    { label: 'MAria Augusta', value: 3 }
-  ];
+  pessoas = [];
 
-  constructor(private app: AppComponent, private categoriaService: CategoriaService, private messageService: MessageService) { }
+  constructor(
+    private app: AppComponent,
+    private categoriaService: CategoriaService,
+    private messageService: MessageService,
+    private pessoaService: PessoaService) { }
 
   ngOnInit() {
     this.pt = this.app.pt;
     this.carregarCategorias();
+    this.carregarPessoas();
   }
 
   carregarCategorias() {
     return this.categoriaService.listarTodas().subscribe(categorias => {
-      this.categorias = categorias.map(c => ({ label: c.nome, value: c.codigo}));
+      this.categorias = categorias.map(c => ({ label: c.nome, value: c.codigo }));
     },
-    error => {
-      this.messageService.add({ severity: 'error', detail: error });
-    });
+      error => {
+        this.messageService.add({ severity: 'error', detail: error });
+      });
+  }
+
+  carregarPessoas() {
+    return this.pessoaService.listarTodas().subscribe(pessoas => {
+      this.pessoas = pessoas.content.map(c => ({ label: c.nome, value: c.codigo }));
+    },
+      error => {
+        this.messageService.add({ severity: 'error', detail: error });
+      });
   }
 
 }
