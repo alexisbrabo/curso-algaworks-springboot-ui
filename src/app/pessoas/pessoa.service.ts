@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from '../core/error-handler.service';
+import { Pessoa } from '../core/model';
 
 export class PessoaFiltro {
   nome: string;
@@ -48,6 +49,16 @@ export class PessoaService {
 
     return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers }).pipe(catchError(this.errorHandler.handle));
   }
+
+  adicionar(pessoa: Pessoa): Observable<Pessoa> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.post<any>(this.pessoasUrl, pessoa, { headers }).pipe(catchError(this.errorHandler.handle));
+  }
+
 
   mudarStatus(codigo: number, status: boolean): Observable<any> {
     const headers = new HttpHeaders({

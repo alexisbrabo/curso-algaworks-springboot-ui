@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
 import * as moment from 'moment';
+
 import { ErrorHandlerService } from '../core/error-handler.service';
+import { Lancamento } from '../core/model';
 
 export class LancamentoFiltro {
   descricao: string;
@@ -42,6 +46,15 @@ export class LancamentoService {
     });
 
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers }).pipe(catchError(this.errorHandler.handle));
+  }
+
+  adicionar(lancamento: Lancamento): Observable<Lancamento> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.post<any>(this.lancamentosUrl, lancamento, { headers }).pipe(catchError(this.errorHandler.handle));
   }
 
 }
