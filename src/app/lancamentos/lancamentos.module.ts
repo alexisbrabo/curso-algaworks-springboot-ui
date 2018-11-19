@@ -20,6 +20,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     MessagesModule,
     MessageModule,
     CurrencyMaskModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     LancamentoCadastroComponent,

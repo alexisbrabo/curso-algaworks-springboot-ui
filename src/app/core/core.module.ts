@@ -10,12 +10,14 @@ import { ConfirmationService, MessageService } from 'primeng/components/common/a
 
 import { PessoaService } from '../pessoas/pessoa.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    RouterModule
   ],
   declarations: [
     NavbarComponent

@@ -16,6 +16,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     PessoasPesquisaComponent,
