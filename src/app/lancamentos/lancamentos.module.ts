@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -20,7 +21,6 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -38,7 +38,7 @@ import { RouterModule } from '@angular/router';
     MessageModule,
     CurrencyMaskModule,
     SharedModule,
-    RouterModule
+    LancamentosRoutingModule
   ],
   declarations: [
     LancamentoCadastroComponent,
