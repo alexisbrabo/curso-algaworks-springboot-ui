@@ -12,6 +12,7 @@ import { PessoaService } from '../pessoas/pessoa.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     PessoaService,
     MessageService,
     ConfirmationService,
+    Title,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     ErrorHandlerService
   ]

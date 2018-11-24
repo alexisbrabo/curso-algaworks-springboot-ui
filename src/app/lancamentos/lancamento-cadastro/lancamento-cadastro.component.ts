@@ -10,6 +10,7 @@ import { PessoaService } from 'src/app/pessoas/pessoa.service';
 
 import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { MessageService } from 'primeng/components/common/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -34,6 +35,7 @@ export class LancamentoCadastroComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private messageService: MessageService,
     private pessoaService: PessoaService,
+    private title: Title,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -45,6 +47,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.pt = this.app.pt;
     this.carregarCategorias();
     this.carregarPessoas();
+    this.title.setTitle('Novo Lançamento');
   }
 
   get editando() {
@@ -55,6 +58,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo).subscribe(lancamento => {
       this.lancamentoService.converterStringsParaDatas([lancamento]);
       this.lancamento = lancamento;
+      this.atualizarTituloEdicao();
     },
       error => {
         this.messageService.add({ severity: 'error', detail: error });
@@ -86,6 +90,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
       this.lancamentoService.converterStringsParaDatas([lancamento]);
       this.lancamento = lancamento;
+      this.atualizarTituloEdicao();
     },
       error => {
         this.messageService.add({ severity: 'error', detail: error });
@@ -118,6 +123,10 @@ export class LancamentoCadastroComponent implements OnInit {
     }.bind(this), 1);
 
     this.router.navigate(['/lancamentos/novo']);
+  }
+
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Edição de Lançamento: ${this.lancamento.descricao}`);
   }
 
 }

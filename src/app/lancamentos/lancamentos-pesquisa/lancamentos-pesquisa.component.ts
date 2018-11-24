@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { AppComponent } from 'src/app/app.component';
 import { MessageService } from 'primeng/components/common/api';
-import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -17,13 +17,18 @@ export class LancamentosPesquisaComponent implements OnInit {
   pt: any;
 
 
-  constructor(private lancamentoService: LancamentoService, private app: AppComponent,
-    private messageService: MessageService) {
+  constructor(
+    private lancamentoService: LancamentoService,
+     private app: AppComponent,
+    private messageService: MessageService,
+    private title: Title
+    ) {
 
   }
 
   ngOnInit() {
     this.pt = this.app.pt;
+    this.title.setTitle('Pesquisa de Lançamentos');
   }
 
   pesquisar(pagina) {
