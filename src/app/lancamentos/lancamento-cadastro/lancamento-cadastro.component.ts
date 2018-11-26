@@ -65,15 +65,15 @@ export class LancamentoCadastroComponent implements OnInit {
       });
   }
 
-  salvar(form: FormControl) {
+  salvar() {
     if (this.editando) {
       this.atualizarLancamento();
     } else {
-      this.adicionarLancamento(form);
+      this.adicionarLancamento();
     }
   }
 
-  adicionarLancamento(form: FormControl) {
+  adicionarLancamento() {
     this.lancamentoService.adicionar(this.lancamento).subscribe(lancamentoAdicionado => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento adicionado com sucesso!' });
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaService, PessoaFiltro } from '../pessoa.service';
 
 import { MessageService } from 'primeng/components/common/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -15,9 +16,15 @@ export class PessoasPesquisaComponent implements OnInit {
   filtro = new PessoaFiltro();
   totalRegistros = 0;
 
-  constructor(private pessoaService: PessoaService, private messageService: MessageService) { }
+  constructor(
+    private pessoaService: PessoaService,
+    private messageService: MessageService,
+    private title: Title
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de Pessoas');
+  }
 
   pesquisar(pagina) {
     this.filtro.page = pagina;

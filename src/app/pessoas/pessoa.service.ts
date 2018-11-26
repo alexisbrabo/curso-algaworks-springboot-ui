@@ -59,6 +59,15 @@ export class PessoaService {
     return this.http.post<any>(this.pessoasUrl, pessoa, { headers }).pipe(catchError(this.errorHandler.handle));
   }
 
+  atualizar(pessoa: Pessoa): Observable<Pessoa> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.put<any>(`${this.pessoasUrl}/${pessoa.codigo}`,
+      pessoa, { headers }).pipe(catchError(this.errorHandler.handle));
+  }
 
   mudarStatus(codigo: number, status: boolean): Observable<any> {
     const headers = new HttpHeaders({
@@ -68,5 +77,14 @@ export class PessoaService {
 
     return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`,
      status, { headers }).pipe(catchError(this.errorHandler.handle));
+  }
+
+  buscarPorCodigo(codigo: Number): Observable<Pessoa> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    });
+
+    return this.http.get<any>(`${this.pessoasUrl}/${codigo}`, { headers }).pipe(catchError(this.errorHandler.handle));
   }
 }
