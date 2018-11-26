@@ -13,7 +13,7 @@ export class ErrorHandlerService {
 
   handle(error: any) {
     let msg: string;
-
+    console.log(error);
     if (typeof error === 'string') {
       msg = error;
     } else {

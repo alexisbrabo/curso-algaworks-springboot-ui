@@ -6,7 +6,6 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 
 
 const routes: Routes = [
-    // { path: '', redirectTo: 'lancamentos', pathMatch: 'prefix' },
     { path: 'lancamentos', component: LancamentosPesquisaComponent },
     { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
     { path: 'lancamentos/:codigo', component: LancamentoCadastroComponent },

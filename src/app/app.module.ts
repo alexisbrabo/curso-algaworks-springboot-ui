@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { AppRoutingModule } from './app-routing.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(ptBr);
 
@@ -25,6 +26,7 @@ registerLocaleData(ptBr);
     AppRoutingModule,
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
     CoreModule
   ],
   providers: [
