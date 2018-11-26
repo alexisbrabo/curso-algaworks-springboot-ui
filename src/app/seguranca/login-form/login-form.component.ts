@@ -22,7 +22,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   login(form: FormControl) {
-    console.log(form);
 
     this.authService.login(this.usuario, this.senha).subscribe(response => {
       console.log(response);

@@ -21,7 +21,7 @@ export class AuthService {
       'Content-Type' : 'application/x-www-form-urlencoded'
     });
 
-    const body = 'username=admin%40algamoney.com&password=admin&grant_type=password';
+    const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
     return this.http.post<any>(this.oauthTokenUrl, body, { headers }).pipe(catchError(this.errorHandler.handle));
   }
