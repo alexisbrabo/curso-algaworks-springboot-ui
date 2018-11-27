@@ -1,5 +1,7 @@
 <div class="container" style="max-width: 400px; margin: auto">
-  <form #formulario="ngForm" autocomplete="off" (ngSubmit)="login(formulario)">
+  {{ jwtPayLoad | json }}
+
+  <form #formulario="ngForm" autocomplete="off" (ngSubmit)="login()">
 
     <div class="ui-g ui-fluid">
 

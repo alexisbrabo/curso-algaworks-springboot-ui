@@ -16,6 +16,7 @@ import { AuthService } from '../seguranca/auth.service';
 
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     AuthService,
     MessageService,
     ConfirmationService,
+    JwtHelperService,
     Title,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     ErrorHandlerService
