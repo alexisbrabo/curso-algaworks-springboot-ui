@@ -13,11 +13,13 @@ export class ErrorHandlerService {
 
   handle(error: any) {
     let msg: string;
-    console.log(error);
+
     if (typeof error === 'string') {
       msg = error;
     } else {
-      if (error.status.toString().startsWith(4)) {
+      if (error.status === 400 && error.error && error.error.error === 'invalid_grant') {
+        msg = 'Usuário ou Senha inválida!';
+      } else if (error.status.toString().startsWith(4)) {
         msg = error.error[0].mensagemUsuario;
       } else {
         msg = 'Falha no processamento. Tente Novamente';

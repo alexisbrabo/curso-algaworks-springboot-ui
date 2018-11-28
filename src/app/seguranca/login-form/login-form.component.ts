@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { MessageService } from 'primeng/components/common/api';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -17,6 +18,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
     private messageService: MessageService,
     private jwtHelper: JwtHelperService
   ) { this.carregarToken(); }
@@ -26,10 +28,11 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     this.authService.login(this.usuario, this.senha).subscribe(response => {
-      console.log(response);
       this.armazenarToken(response.access_token);
+      this.router.navigate(['/lancamentos']);
     },
       error => {
+        this.senha = '';
         this.messageService.add({ severity: 'error', detail: error });
       });
   }
