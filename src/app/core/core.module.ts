@@ -17,6 +17,9 @@ import { AuthService } from '../seguranca/auth.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MoneyHttp } from '../seguranca/money-http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../seguranca/token-interceptor';
 
 @NgModule({
   imports: [
@@ -41,6 +44,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     MessageService,
     ConfirmationService,
     JwtHelperService,
+    MoneyHttp,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     Title,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     ErrorHandlerService

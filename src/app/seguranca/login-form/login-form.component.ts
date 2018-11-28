@@ -3,51 +3,35 @@ import { AuthService } from '../auth.service';
 import { MessageService } from 'primeng/components/common/api';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   usuario = '';
   senha = '';
-  jwtPayLoad: any;
-
-
   constructor(
-    private authService: AuthService,
-    private router: Router,
+    private auth: AuthService,
     private messageService: MessageService,
-    private jwtHelper: JwtHelperService
-  ) { this.carregarToken(); }
-
-  ngOnInit() {
-  }
+    private router: Router
+  ) { }
 
   login() {
-    this.authService.login(this.usuario, this.senha).subscribe(response => {
-      this.armazenarToken(response.access_token);
-      this.router.navigate(['/lancamentos']);
-    },
-      error => {
-        this.senha = '';
-        this.messageService.add({ severity: 'error', detail: error });
+    this.auth.login(this.usuario, this.senha)
+      .then(() => {
+        this.router.navigate(['/lancamentos']);
+      })
+      .catch(error => {
+        if (error.status === 400) {
+          if (error.error.error === 'invalid_grant') {
+            this.messageService.add({ severity: 'error', detail: 'Usuário ou senha inválida!' });
+          }
+        }
       });
-  }
-
-  private armazenarToken(token: string) {
-    this.jwtPayLoad = this.jwtHelper.decodeToken(token);
-    localStorage.setItem('token', token);
-  }
-
-  private carregarToken() {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      this.armazenarToken(token);
-    }
   }
 
 }
