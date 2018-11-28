@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/components/common/api';
 import { LancamentosPesquisaComponent } from '../lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoService } from '../lancamento.service';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-lancamentos-grid',
@@ -15,8 +16,13 @@ export class LancamentosGridComponent {
   @Input() totalRegistros;
   @ViewChild('tabela') grid;
 
-  constructor(private lancamentoPesquisa: LancamentosPesquisaComponent, private lancamentoService: LancamentoService,
-    private messageService: MessageService, private confirmation: ConfirmationService) { }
+  constructor(
+    private lancamentoPesquisa: LancamentosPesquisaComponent,
+    private lancamentoService: LancamentoService,
+    private messageService: MessageService,
+    private confirmation: ConfirmationService,
+    private auth: AuthService
+  ) { }
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
@@ -29,9 +35,9 @@ export class LancamentosGridComponent {
       this.grid.first = 0;
       this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso' });
     },
-    error => {
-      this.messageService.add({ severity: 'error', detail: error });
-    });
+      error => {
+        this.messageService.add({ severity: 'error', detail: error });
+      });
   }
 
   confirmarExclusao(lancamento: any) {
