@@ -13,12 +13,13 @@ export class ErrorHandlerService {
 
   handle(error: any) {
     let msg: string;
-
     if (typeof error === 'string') {
       msg = error;
     } else {
       if (error.status === 400 && error.error && error.error.error === 'invalid_grant') {
         msg = 'Usuário ou Senha inválida!';
+      } else if (error.status === 403) {
+        msg = 'Você não tem permissão para esta ação!';
       } else if (error.status.toString().startsWith(4)) {
         msg = error.error[0].mensagemUsuario;
       } else {
