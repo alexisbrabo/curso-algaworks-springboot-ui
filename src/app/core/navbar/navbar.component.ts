@@ -21,12 +21,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout() {
+  async logout() {
     this.logoutService.logout()
-      .then(() => {
+      .subscribe(() => {
+        this.auth.limparAccessToken();
         this.router.navigate(['/login']);
-      })
-      .catch();
+      },
+        error => {
+          this.messageService.add({ severity: 'error', detail: error });
+        });
   }
 
 }

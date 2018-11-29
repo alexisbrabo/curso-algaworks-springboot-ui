@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { MoneyHttp } from './money-http';
+import { ErrorHandlerService } from '../core/error-handler.service';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,7 @@ export class LogoutService {
     private errorHandler: ErrorHandlerService
   ) { }
 
-  logout() {
-    return this.http.delete(this.tokensRevokeUrl, { withCredentials: true })
-      .toPromise()
-      .then(() => {
-        this.auth.limparAccessToken();
-      });
+  logout(): Observable<any> {
+    return this.http.delete(this.tokensRevokeUrl, { withCredentials: true }).pipe(catchError(this.errorHandler.handle));
   }
 }
