@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../../environments/environment';
+import { AuthGuard } from './auth.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -31,5 +32,6 @@ export function tokenGetter() {
     SegurancaRoutingModule
   ],
   declarations: [LoginFormComponent],
+  providers: [AuthGuard]
 })
 export class SegurancaModule { }
