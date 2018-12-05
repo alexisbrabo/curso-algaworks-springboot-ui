@@ -11,12 +11,15 @@ import { MessageService } from 'primeng/components/common/api';
 })
 export class NavbarComponent implements OnInit {
 
+  exibindoMenu: boolean;
+
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private logoutService: LogoutService,
     private router: Router,
     private messageService: MessageService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }

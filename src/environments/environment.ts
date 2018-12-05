@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-
-  tokenWhitelistedDomains: [ /localhot:8080/ ],
-  tokenBlacklistedDomains: [ /\/oauth\/token/ ],
+  apiUrl: 'http://localhost:8080',
+  tokenWhitelistedDomains: ['localhost:8080'],
+  tokenBlacklistedDomains: ['localhost:8080\/oauth\/token'],
 
 };
 

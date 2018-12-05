@@ -5,6 +5,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from '../core/error-handler.service';
 import { Pessoa } from '../core/model';
 import { MoneyHttp } from '../seguranca/money-http';
+import { environment } from './../../environments/environment';
 
 export class PessoaFiltro {
   nome: string;
@@ -17,9 +18,11 @@ export class PessoaFiltro {
 })
 export class PessoaService {
 
-  pessoasUrl = 'http://localhost:8080/pessoas';
+  pessoasUrl: string;
 
-  constructor(private http: MoneyHttp, private errorHandler: ErrorHandlerService) { }
+  constructor(private http: MoneyHttp, private errorHandler: ErrorHandlerService) {
+    this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+  }
 
   pesquisar(filtro: any): Observable<any> {
     // Deletar filtros que não foram preenchidos
