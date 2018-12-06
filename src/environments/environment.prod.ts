@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   apiUrl: 'https://alexismoney-api.herokuapp.com',
-  tokenWhitelistedDomains: ['localhost:8080'],
-  tokenBlacklistedDomains: ['localhost:8080\/oauth\/token'],
+  tokenWhitelistedDomains: ['https://alexismoney-api.herokuapp.com'],
+  tokenBlacklistedDomains: ['https://alexismoney-api.herokuapp.com\/oauth\/token'],
 };
