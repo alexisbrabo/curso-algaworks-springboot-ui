@@ -25,7 +25,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: environment.tokenWhitelistedDomains,
-        blacklistedRoutes: environment.tokenBlacklistedDomains
+        blacklistedRoutes: environment.tokenBlacklistedRoutes
       }
     }),
     InputTextModule,
