@@ -60,7 +60,6 @@ export class MoneyHttp extends HttpClient {
 
       return observableFromPromise(chamadaNovoAccessToken);
     } else {
-      console.log('passou');
       return fn();
     }
   }
