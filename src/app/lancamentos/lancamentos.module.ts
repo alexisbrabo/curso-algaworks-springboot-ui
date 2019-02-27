@@ -8,7 +8,7 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -26,6 +26,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
     TableModule,
