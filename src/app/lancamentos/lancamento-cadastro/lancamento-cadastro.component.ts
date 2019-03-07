@@ -84,7 +84,7 @@ export class LancamentoCadastroComponent implements OnInit {
   carregarLancamento(codigo: number) {
     this.lancamentoService.buscarPorCodigo(codigo).subscribe(lancamento => {
       this.lancamentoService.converterStringsParaDatas([lancamento]);
-      //this.lancamento = lancamento;
+      // this.lancamento = lancamento;
       this.formulario.patchValue(lancamento);
       this.atualizarTituloEdicao();
     },
